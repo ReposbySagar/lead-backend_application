@@ -1,0 +1,91 @@
+server:
+  port: 8080
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+spring:
+  application:
+    name: lead-qualification-backend
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.leadqualification: INFO
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:your_api_key_here}
+    base-url: ${GEMINI_API_BASE:https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent}
+    max-tokens: 150
+    temperature: 0.3
+
+file:
+  upload:
+    directory: uploads/
+    max-size: 10485760
+    allowed-types: csv
+
+scoring:
+  rules:
+    role:
+      decision-maker: 20
+      influencer: 10
+      other: 0
+    industry:
+      exact-match: 20
+      adjacent-match: 10
+      no-match: 0
+    data-completeness: 10
+  ai:
+    high-intent: 50
+    medium-intent: 30
+    low-intent: 10
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:testdb}
+    username: ${DATABASE_USERNAME:sa}
+    password: ${DATABASE_PASSWORD:password}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
