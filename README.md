@@ -348,7 +348,7 @@ docker build -t lead-qualification-backend .
 ```bash
 docker run -p 8080:8080 \
   -e GEMINI_API_KEY=your-api-key \
-  -e GEMINI_API_BASE=https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent \
+  -e GEMINI_API_BASE:https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent
   lead-qualification-backend
 ```
 
@@ -360,7 +360,7 @@ docker run -p 8080:8080 \
 2. Create a new Web Service
 3. Set environment variables:
    - `GEMINI_API_KEY`: Your Google Gemini API key
-   - `GEMINI_API_BASE`: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`
+   - `GEMINI_API_BASE:https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent`
    - `SPRING_PROFILES_ACTIVE`: production
 4. Deploy with build command: `mvn clean package`
 5. Start command: `java -jar target/lead-qualification-backend-1.0.0.jar`
@@ -420,7 +420,7 @@ spring:
 gemini:
   api:
     key: ${GEMINI_API_KEY}
-    model: gemini-pro
+    model: gemini-1.5-pro
     max-tokens: 150
     temperature: 0.3
 
