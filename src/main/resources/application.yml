@@ -33,14 +33,16 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
-  metrics:
-    system:
-      processor:
-        enabled: false
+        include: health,info
   endpoint:
     health:
       show-details: always
+  defaults:
+    enabled: false   # disable all default metrics binders
+  metrics:
+    enable:
+      jvm: true      # keep JVM metrics (optional)
+      logback: true  # keep logging metrics (optional)
 
 logging:
   level:
@@ -92,4 +94,3 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-
