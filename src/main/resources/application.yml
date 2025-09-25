@@ -48,7 +48,7 @@ logging:
 gemini:
   api:
     key: ${GEMINI_API_KEY:your_api_key_here}
-    base-url: ${GEMINI_API_BASE:https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent}
+    base-url: https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent
     max-tokens: 150
     temperature: 0.3
 
