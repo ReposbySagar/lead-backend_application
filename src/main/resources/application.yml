@@ -34,15 +34,13 @@ management:
     web:
       exposure:
         include: health,info,metrics
-  endpoint:
-    health:
-      show-details: always
-
-management:
   metrics:
     system:
       processor:
         enabled: false
+  endpoint:
+    health:
+      show-details: always
 
 logging:
   level:
