@@ -38,6 +38,12 @@ management:
     health:
       show-details: always
 
+management:
+  metrics:
+    system:
+      processor:
+        enabled: false
+
 logging:
   level:
     com.leadqualification: INFO
